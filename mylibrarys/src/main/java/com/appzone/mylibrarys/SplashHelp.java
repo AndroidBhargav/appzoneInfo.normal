@@ -390,7 +390,13 @@ public class SplashHelp extends AppCompatActivity {
                     /**
                      * App Live Status
                      */
-                    MyHelpers.setlive_status(response.getString("live"));
+
+                    if (PackName.equals("Test")) {
+                        MyHelpers.setlive_status("1");
+                    } else {
+                        MyHelpers.setlive_status(response.getString("live"));
+                    }
+
                     /**
                      * Extra data
                      */
