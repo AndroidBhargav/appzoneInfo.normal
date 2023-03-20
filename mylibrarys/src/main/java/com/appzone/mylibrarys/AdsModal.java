@@ -8,30 +8,16 @@ public class AdsModal {
     String app_description;
     String app_logo;
     String app_banner;
-    String extra_switch_1;
-    String extra_switch_2;
-    String extra_switch_3;
-    String extra_switch_4;
-    String extra_text_1;
-    String extra_text_2;
-    String extra_text_3;
-    String extra_text_4;
 
-    public AdsModal(String app_name, String enable_ads, String ad_app_name, String app_description, String app_logo, String app_banner, String extra_switch_1, String extra_switch_2, String extra_switch_3, String extra_switch_4, String extra_text_1, String extra_text_2, String extra_text_3, String extra_text_4) {
+
+    public AdsModal(String app_name, String enable_ads, String ad_app_name, String app_description, String app_logo, String app_banner) {
         this.app_name = app_name;
         this.enable_ads = enable_ads;
         this.ad_app_name = ad_app_name;
         this.app_description = app_description;
         this.app_logo = app_logo;
         this.app_banner = app_banner;
-        this.extra_switch_1 = extra_switch_1;
-        this.extra_switch_2 = extra_switch_2;
-        this.extra_switch_3 = extra_switch_3;
-        this.extra_switch_4 = extra_switch_4;
-        this.extra_text_1 = extra_text_1;
-        this.extra_text_2 = extra_text_2;
-        this.extra_text_3 = extra_text_3;
-        this.extra_text_4 = extra_text_4;
+
     }
 
 
@@ -83,67 +69,5 @@ public class AdsModal {
         this.app_banner = app_banner;
     }
 
-    public String getExtra_switch_1() {
-        return extra_switch_1;
-    }
 
-    public void setExtra_switch_1(String extra_switch_1) {
-        this.extra_switch_1 = extra_switch_1;
-    }
-
-    public String getExtra_switch_2() {
-        return extra_switch_2;
-    }
-
-    public void setExtra_switch_2(String extra_switch_2) {
-        this.extra_switch_2 = extra_switch_2;
-    }
-
-    public String getExtra_switch_3() {
-        return extra_switch_3;
-    }
-
-    public void setExtra_switch_3(String extra_switch_3) {
-        this.extra_switch_3 = extra_switch_3;
-    }
-
-    public String getExtra_switch_4() {
-        return extra_switch_4;
-    }
-
-    public void setExtra_switch_4(String extra_switch_4) {
-        this.extra_switch_4 = extra_switch_4;
-    }
-
-    public String getExtra_text_1() {
-        return extra_text_1;
-    }
-
-    public void setExtra_text_1(String extra_text_1) {
-        this.extra_text_1 = extra_text_1;
-    }
-
-    public String getExtra_text_2() {
-        return extra_text_2;
-    }
-
-    public void setExtra_text_2(String extra_text_2) {
-        this.extra_text_2 = extra_text_2;
-    }
-
-    public String getExtra_text_3() {
-        return extra_text_3;
-    }
-
-    public void setExtra_text_3(String extra_text_3) {
-        this.extra_text_3 = extra_text_3;
-    }
-
-    public String getExtra_text_4() {
-        return extra_text_4;
-    }
-
-    public void setExtra_text_4(String extra_text_4) {
-        this.extra_text_4 = extra_text_4;
-    }
 }

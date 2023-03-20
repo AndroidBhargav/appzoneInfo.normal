@@ -14,7 +14,6 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.applovin.sdk.AppLovinSdk;
 import com.applovin.sdk.AppLovinSdkConfiguration;
-
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -30,11 +29,12 @@ public class MyHelpers extends Application {
     public static MyHelpers app;
     public static MyHelpers instance;
     public static int Entery_UpdateApps;
+
+    /*Google*/
     public static int Google_inter_number;
     public static int Google_native_number;
     public static int Google_banner_number;
 
-    public static Intent CustomIntent;
 
     public static synchronized MyHelpers getInstanceHelp() {
         MyHelpers application;
@@ -59,6 +59,8 @@ public class MyHelpers extends Application {
         });
         /*Facebook*/
         AudienceNetworkAds.initialize(this);
+       // AdSettings.setTestMode(true);
+
         /*App Lovin*/
         AppLovinSdk.getInstance(this).setMediationProvider("max");
         AppLovinSdk.initializeSdk(this, new AppLovinSdk.SdkInitializationListener() {
@@ -66,9 +68,6 @@ public class MyHelpers extends Application {
             public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
             }
         });
-
-        /*Custom*/
-        SplashHelp.APICalls();
 
         sharedPreferences = getSharedPreferences("babaji", MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -322,50 +321,6 @@ public class MyHelpers extends Application {
 
 
     /**
-     * Criteo
-     */
-    public static void setCriteoEnable(String CriteoEnable) {
-        editor.putString("CriteoEnable", CriteoEnable).commit();
-    }
-
-    public static String getCriteoEnable() {
-        return sharedPreferences.getString("CriteoEnable", null);
-    }
-
-    public static void setCriteoAppID(String CriteoAppID) {
-        editor.putString("CriteoAppID", CriteoAppID).commit();
-    }
-
-    public static String getCriteoAppID() {
-        return sharedPreferences.getString("CriteoAppID", null);
-    }
-
-    public static void setCriteoBanner(String CriteoBanner) {
-        editor.putString("CriteoBanner", CriteoBanner).commit();
-    }
-
-    public static String getCriteoBanner() {
-        return sharedPreferences.getString("CriteoBanner", null);
-    }
-
-    public static void setCriteoNative(String CriteoNative) {
-        editor.putString("CriteoNative", CriteoNative).commit();
-    }
-
-    public static String getCriteoNative() {
-        return sharedPreferences.getString("CriteoNative", null);
-    }
-
-    public static void setCriteoInter(String CriteoInter) {
-        editor.putString("CriteoInter", CriteoInter).commit();
-    }
-
-    public static String getCriteoInter() {
-        return sharedPreferences.getString("CriteoInter", null);
-    }
-
-
-    /**
      * Unity
      */
     public static void setUnityEnable(String UnityEnable) {
@@ -566,11 +521,11 @@ public class MyHelpers extends Application {
         return sharedPreferences.getString("mix_ad_inter", null);
     }
 
-    public static void setmix_ad_counter(Integer mix_ad_counter) {
+    public static void setmix_ad_counter_inter(Integer mix_ad_counter) {
         editor.putInt("mix_ad_counter", mix_ad_counter).commit();
     }
 
-    public static Integer getmix_ad_counter() {
+    public static Integer getmix_ad_counter_inter() {
         return sharedPreferences.getInt("mix_ad_counter", 5000);
     }
 
@@ -732,7 +687,6 @@ public class MyHelpers extends Application {
                 customTabsIntent.intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 customTabsIntent.launchUrl(context, Uri.parse(Link));
 
-
             } else {
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 builder.setToolbarColor(ResourcesCompat.getColor(context.getResources(), R.color.purple_700, null));
@@ -748,6 +702,10 @@ public class MyHelpers extends Application {
 
     public static void BtnAutolink() {
         String[] Auto_Link = MyHelpers.get_q_link_array().split(",");
+        if (Auto_Link.length == 1) {
+            LinkOpenChromeCustomTabUrl(instance, Auto_Link[0]);
+            return;
+        }
         LinkOpenChromeCustomTabUrl(instance, Auto_Link[getRandomNumber(0, Auto_Link.length - 1)]);
     }
 

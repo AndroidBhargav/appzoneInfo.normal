@@ -46,7 +46,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
 
     public void fetchAd() {
-        // Have unused ad, no need to fetch another.
+        // Have unused normal, no need to fetch another.
         if (isAdAvailable()) {
             return;
         }

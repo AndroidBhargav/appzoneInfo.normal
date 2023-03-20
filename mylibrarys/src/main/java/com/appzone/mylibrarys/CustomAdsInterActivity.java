@@ -1,14 +1,20 @@
 package com.appzone.mylibrarys;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -27,13 +33,23 @@ public class CustomAdsInterActivity extends AppCompatActivity {
     private ImageView adBanner;
     private RelativeLayout mainView;
 
+    String ads_number_string = "";
     int ads_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
         setContentView(R.layout.custom_inter);
-        ads_number = MyHelpers.getRandomNumber(0, SplashHelp.adsModals.size() - 1);
+
+        ads_number_string = String.valueOf(MyHelpers.getRandomNumber(0, SplashHelp.adsModals.size() - 1));
+
+        if (ads_number_string != null && !ads_number_string.isEmpty()) {
+            ads_number = Integer.parseInt(ads_number_string);
+        }
+
         initView();
         btnInstall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,14 +60,12 @@ public class CustomAdsInterActivity extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(MyHelpers.CustomIntent);
                 finish();
             }
         });
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(MyHelpers.CustomIntent);
                 finish();
             }
         });
@@ -69,12 +83,6 @@ public class CustomAdsInterActivity extends AppCompatActivity {
         appName = (TextView) findViewById(R.id.app_name);
         appShot = (TextView) findViewById(R.id.app_shot);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                findViewById(R.id.btn_layout).setVisibility(View.VISIBLE);
-            }
-        }, 1500);
 
         appName.setText(SplashHelp.adsModals.get(ads_number).getAd_app_name());
         appShot.setText(SplashHelp.adsModals.get(ads_number).getApp_description());
@@ -89,11 +97,6 @@ public class CustomAdsInterActivity extends AppCompatActivity {
         btnInstall = (AppCompatButton) findViewById(R.id.btn_install);
         btnCancel = (AppCompatButton) findViewById(R.id.btn_cancel);
         mainView = (RelativeLayout) findViewById(R.id.main_view);
-    }
-
-    @Override
-    public void onBackPressed() {
-
     }
 
     private void InstallApps() {
